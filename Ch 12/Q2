@@ -1,0 +1,29 @@
+/* Implement a function void reverse(char* str) in C or C++ which reverses a null terminated string */
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+void reverse(char *str){
+  char* end = str;
+  char tmp;
+  if(str){
+    while(*end){
+      ++end;
+    }
+    --end; // This one space back it to omit the null character
+    
+    while(str < end){ // while start of the string is still less than end, keep swapping till they meet
+      tmp = *str;
+      *str++ = *end;
+      *end-- = tmp;
+    }
+  }
+}
+
+int main(){
+  char str[] = "preetu";
+  reverse(str);
+  cout<<str<<endl;
+}
