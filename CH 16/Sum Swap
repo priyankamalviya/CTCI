@@ -1,0 +1,49 @@
+/* Problem: Given 2 arrays of integers, find a pair of values(one value from each array) that you can swap to give the 2 arrays
+the same sum.
+
+Solution: If we use brute force, we loop through array2 within array1 (nested loop) and try to look for the target element, 
+  which is: one-two = target, or two = one-target. This can be done using hash table.
+  Array2 values can be kept in a hastable and array1 values can be matched for target using a single loop. 
+  The complexity of this algorithm then becomes O(A+B). This is the best conceivable runtime. */
+  
+  
+  Integer getTarget(int[] arrayA, int[] arrayB){
+    int sumA = sum(arrayA);
+    int sumB = sum(arrayB);
+    
+    
+    if((sumA-sumB) %2 !=0) return null;
+    
+    return (sumA-sumB) /2;
+  }
+  
+  int[] findSwapValues(int[] arrayA, int[] arrayB){
+    Integer target = getTarget(arrayA, arrayB);
+    if(target == null) return null;
+    return findDifference(arrayA, arrayB, target);
+  }
+  
+  int findDifference(int[] arrayA, int[] arrayB, int target){
+    HashSet<Integer> contents2 = getContents(array2);
+    for(int one: arrayA){
+      int two = one-target;
+      if(contents2.contains(two)){
+        int[] values = {one, two};
+        return values;
+      }
+    }
+    return null;
+  }
+  
+  /* put contents of 1 array into hashset */
+  
+  HashSet<Integer> getContents(int[] array){
+    HashSet<Integer> set = new HashSet<Integer>();
+    for(int a: array){
+      set.add(a);
+    }
+    return set;
+  }
+  
+  
+  
