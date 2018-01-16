@@ -1,0 +1,15 @@
+/* Write a program to add two numbers without the '+' operator.
+
+Solution: if we analyze sum, 
+the sum without carry is XOR operation, plus, the carry of all the digits, which is AND operation, shifted ((a & b ) << 1) .*/
+
+
+int add(int a, int b) {
+  while( b != 0) {
+    int sum = a^ b; // add without carrying
+    int carry = (a & b) << 1;
+    a = sum;
+    b = carry;
+  }
+  return a;
+}
